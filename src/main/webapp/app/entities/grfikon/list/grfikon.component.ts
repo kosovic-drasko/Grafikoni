@@ -30,8 +30,20 @@ export class GrfikonComponent implements OnInit {
     });
   }
 
+  ucitajGrafikon(): void {
+    this.grfikonService.grafikon().subscribe(res => {
+      const region = res.map((res: { region: string }) => res.region);
+      const promet = res.map((res: { promet: number }) => res.promet);
+      // eslint-disable-next-line no-console
+      console.log(region);
+      // eslint-disable-next-line no-console
+      console.log(promet);
+    });
+  }
+
   ngOnInit(): void {
     this.loadAll();
+    this.ucitajGrafikon();
   }
 
   trackId(index: number, item: IGrfikon): number {

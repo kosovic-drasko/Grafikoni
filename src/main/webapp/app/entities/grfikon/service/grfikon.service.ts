@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IGrfikon, getGrfikonIdentifier } from '../grfikon.model';
+import { map } from 'rxjs/operators';
 
 export type EntityResponseType = HttpResponse<IGrfikon>;
 export type EntityArrayResponseType = HttpResponse<IGrfikon[]>;
@@ -15,6 +16,10 @@ export class GrfikonService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/grfikons');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
+
+  grafikon() {
+    return this.http.get(this.resourceUrl).pipe(map((result: any) => result));
+  }
 
   create(grfikon: IGrfikon): Observable<EntityResponseType> {
     return this.http.post<IGrfikon>(this.resourceUrl, grfikon, { observe: 'response' });
