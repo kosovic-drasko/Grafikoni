@@ -17,8 +17,8 @@ export class GrfikonService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  grafikon() {
-    return this.http.get(this.resourceUrl).pipe(map((result: any) => result));
+  grafikon(): any {
+    return this.http.get(this.resourceUrl).pipe(map(result => result));
   }
 
   create(grfikon: IGrfikon): Observable<EntityResponseType> {
