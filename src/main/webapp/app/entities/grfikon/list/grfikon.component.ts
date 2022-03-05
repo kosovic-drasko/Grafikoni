@@ -31,7 +31,7 @@ export class GrfikonComponent implements OnInit {
   }
 
   ucitajGrafikon(): void {
-    this.grfikonService.grafikon().subscribe(res => {
+    this.grfikonService.grafikon().subscribe((res: any[]) => {
       const region = res.map((res: { region: string }) => res.region);
       const promet = res.map((res: { promet: number }) => res.promet);
       // eslint-disable-next-line no-console
