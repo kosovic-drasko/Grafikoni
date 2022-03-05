@@ -48,6 +48,7 @@ public class CacheConfiguration {
             createCache(cm, grafikon.domain.User.class.getName());
             createCache(cm, grafikon.domain.Authority.class.getName());
             createCache(cm, grafikon.domain.User.class.getName() + ".authorities");
+            createCache(cm, grafikon.domain.Grfikon.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
