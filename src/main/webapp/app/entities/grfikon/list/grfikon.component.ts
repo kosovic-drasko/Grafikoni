@@ -5,15 +5,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IGrfikon } from '../grfikon.model';
 import { GrfikonService } from '../service/grfikon.service';
 import { GrfikonDeleteDialogComponent } from '../delete/grfikon-delete-dialog.component';
-
+// import {Chart} from "chart.js";
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 @Component({
   selector: 'jhi-grfikon',
   templateUrl: './grfikon.component.html',
+  styleUrls: ['./grfikon.component.css'],
 })
 export class GrfikonComponent implements OnInit {
   grfikons?: IGrfikon[];
   isLoading = false;
-
+  chart: any = [];
   constructor(protected grfikonService: GrfikonService, protected modalService: NgbModal) {}
 
   loadAll(): void {
@@ -38,6 +41,40 @@ export class GrfikonComponent implements OnInit {
       console.log(region);
       // eslint-disable-next-line no-console
       console.log(promet);
+      this.chart = new Chart('canvas', {
+        // type: 'bar',
+
+        type: 'pie',
+        options: {
+          // horizontalna varijanta
+          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: 'rgb (255, 99, 132)',
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+
+        data: {
+          labels: region,
+          datasets: [
+            {
+              data: promet,
+              backgroundColor: ['red', 'yellow'],
+              borderColor: '#3cba9f',
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
     });
   }
 
@@ -59,5 +96,8 @@ export class GrfikonComponent implements OnInit {
         this.loadAll();
       }
     });
+  }
+  print(): any {
+    window.print();
   }
 }
