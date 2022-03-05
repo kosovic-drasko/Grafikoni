@@ -84,6 +84,7 @@
     "@fortawesome/fontawesome-svg-core": "1.2.36",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@ng-bootstrap/ng-bootstrap": "11.0.0",
+    "angular-chart.js": "^1.1.1",
     "bootstrap": "4.6.1",
     "bootswatch": "4.6.1",
     "dayjs": "1.10.7",
